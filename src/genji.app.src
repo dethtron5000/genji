@@ -6,7 +6,10 @@
   {applications, [
                   kernel,
                   stdlib,
-                  hackney
+                  inets,
+                  crypto,
+                  public_key,
+                  ssl
                  ]},
   {mod, { genji_app, []}},
   {env, []}

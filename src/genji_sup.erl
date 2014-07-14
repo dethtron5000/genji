@@ -23,5 +23,7 @@ start_link() ->
 %% ===================================================================
 
 init([]) ->
-    {ok, { {one_for_one, 5, 10}, []} }.
+	Config = ?CHILD(genji_config,worker),
+	Router = ?CHILD(genji_router,worker),
+    {ok, { {one_for_one, 5, 10}, [Config,Router]} }.
 

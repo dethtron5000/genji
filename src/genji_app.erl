@@ -10,7 +10,13 @@
 %% ===================================================================
 
 start(_StartType, _StartArgs) ->
-    genji_sup:start_link().
+    L = genji_sup:start_link(),
+    io:format("priv dir is: ~p~n", [code:priv_dir(genji) ]),
+    {ok,Endpoints} = file:consult(code:priv_dir(genji)++"/endpoints.config"),
+    io:format("priv data is: ~p~n", [Endpoints]), 
+    genji_config:set(<<"endpoints">>, Endpoints), 
+    L. 
+    % .
 
 stop(_State) ->
     ok.
